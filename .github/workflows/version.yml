@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - main
 
 jobs:
   release-managment:
@@ -42,5 +43,6 @@ jobs:
           prerelease: false
           title: "Release ${{ steps.version.outputs.version }}"
           files: |
+            action.yaml
             LICENSE.md
             release.zip
