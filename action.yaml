@@ -115,10 +115,13 @@ runs:
         envkey_GATSBY_FOOTER_LOGO_URL: ${{ inputs.footer_logo }}
         envkey_GATSBY_FOOTER_LOGO_HREF: ${{ inputs.footer_logo_url }}
         envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ inputs.nl_design_theme_classname }}
+
         directory: pwa/static
         file_name: .env.production
         fail_on_empty: true
         sort_keys: false
+
+        shell: bash
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -126,12 +129,15 @@ runs:
         node-version: 14
 
     - name: Install dependencies
+      shell: bash
       run: cd pwa && npm install
 
     - name: Remove old Gatsby cache
+      shell: bash
       run: rm -rf pwa/.cache
 
     - name: Build application
+      shell: bash
       run: cd pwa && npm run build
 
     - name: Deploy to GitHub Pages
